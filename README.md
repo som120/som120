@@ -26,7 +26,8 @@ I love building scalable apps, exploring new technologies, and solving real-worl
 **Tools & Platforms:**  
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)  
 
----
+<hr style="width:60%; margin-left:0;">
+
 
 ## 📊 GitHub Stats  
 
