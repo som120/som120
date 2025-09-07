@@ -1,6 +1,9 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Hi%20There!%20I'm%20Somnath&fontSize=40&fontAlignY=35&desc=Flutter%20%7C%20Firebase%20%7C%20Python%20%7C%20Cloud%20%7C%20Java&descAlignY=55&descAlign=50)
 
-<img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="250" align="right">
+<!--START_SECTION:gif-->
+<img src="./assets/gifs/1.gif" width="300" align="right">
+<!--END_SECTION:gif-->
+
 <div align="center">
 <img src="https://raw.githubusercontent.com/innng/innng/master/assets/kyubey.gif" height="40"/>
 </div>
