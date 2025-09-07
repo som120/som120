@@ -1,0 +1,31 @@
+name: Update GIF Daily
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # runs daily at midnight UTC
+  workflow_dispatch: # lets you trigger manually
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Pick a random GIF
+        run: |
+          gifs=(assets/gifs/*.gif)
+          random_gif=${gifs[$RANDOM % ${#gifs[@]}]}
+          echo "RANDOM_GIF=$random_gif" >> $GITHUB_ENV
+
+      - name: Update README
+        run: |
+          sed -i "/<!--START_SECTION:gif-->/, /<!--END_SECTION:gif-->/c\\<!--START_SECTION:gif-->\n<img src=\"./$RANDOM_GIF\" width=\"300\" align=\"right\">\n<!--END_SECTION:gif-->" README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "chore: update random GIF"
+          git push
