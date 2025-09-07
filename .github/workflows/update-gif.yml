@@ -2,8 +2,8 @@ name: Update GIF Daily
 
 on:
   schedule:
-    - cron: "0 */6 * * *" # runs every 6 hours
-  workflow_dispatch: # lets you trigger manually
+    - cron: "0 */6 * * *" # every 6 hours
+  workflow_dispatch: # manual trigger
 
 jobs:
   update-readme:
@@ -11,21 +11,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pick a random GIF
         run: |
           gifs=(assets/gifs/*.gif)
+          echo "Found ${#gifs[@]} gifs"
           random_gif=${gifs[$RANDOM % ${#gifs[@]}]}
           echo "RANDOM_GIF=$random_gif" >> $GITHUB_ENV
 
       - name: Update README
         run: |
-          sed -i "/<!--START_SECTION:gif-->/, /<!--END_SECTION:gif-->/c\\<!--START_SECTION:gif-->\n<img src=\"./$RANDOM_GIF\" width=\"300\" align=\"right\">\n<!--END_SECTION:gif-->" README.md
+          sed -i -E "/<!--START_SECTION:gif-->/, /<!--END_SECTION:gif-->/c\\<!--START_SECTION:gif-->\n<img src=\"./$RANDOM_GIF\" width=\"300\" align=\"right\">\n<!--END_SECTION:gif-->" README.md
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add README.md
-          git commit -m "chore: update random GIF"
+          git add README.md || true
+          git commit -m "chore: update random GIF" || echo "No changes to commit"
           git push
