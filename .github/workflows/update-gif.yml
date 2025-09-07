@@ -3,7 +3,7 @@ name: Update GIF Daily
 on:
   schedule:
     - cron: "0 */6 * * *" # every 6 hours
-  workflow_dispatch: # manual trigger
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -12,6 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0   # fetch full history for pushing
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pick a random GIF
@@ -29,6 +30,10 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add README.md || true
-          git commit -m "chore: update random GIF" || echo "No changes to commit"
-          git push
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update random GIF"
+            git push origin HEAD:main
+          fi
