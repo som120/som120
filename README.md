@@ -14,6 +14,7 @@ Welcome to my GitHub profile!
 I love building scalable apps, exploring new technologies, and solving real-world problems with clean and efficient code.  
 
 [![Hits](https://hits.sh/github.com/som120.svg?style=for-the-badge&label=views&extraCount=1)](https://hits.sh/github.com/som120/)
+
 ---
 
 ## 🛠️ Tech Stack  
